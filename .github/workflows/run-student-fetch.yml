@@ -1,0 +1,54 @@
+name: Run Student Fetch App
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run app and capture output
+        id: run_app
+        continue-on-error: true
+        run: |
+          mkdir -p responses
+          npm start > app-output.log 2>&1
+
+      - name: Upload app output as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-fetch-output
+          path: |
+            app-output.log
+            responses/
+          if-no-files-found: ignore
+
+      - name: Show summary
+        if: always()
+        run: |
+          echo "Workflow finished."
+          if [ -f app-output.log ]; then
+            echo "--- Last 80 lines of app-output.log ---"
+            tail -n 80 app-output.log
+          else
+            echo "No app-output.log generated."
+          fi

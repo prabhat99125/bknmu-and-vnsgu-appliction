@@ -1,0 +1,27 @@
+{
+  "name": "bknmu-and-vnsgu-appliction",
+  "version": "1.0.0",
+  "description": "university app student data",
+  "main": "app.ts",
+  "scripts": {
+    "start": "node --experimental-strip-types app.ts",
+    "typecheck": "npx tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabhat99125/bknmu-and-vnsgu-appliction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/prabhat99125/bknmu-and-vnsgu-appliction/issues"
+  },
+  "homepage": "https://github.com/prabhat99125/bknmu-and-vnsgu-appliction#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "typescript": "^7.0.2"
+  }
+}
