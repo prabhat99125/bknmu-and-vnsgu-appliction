@@ -132,7 +132,7 @@ async function processBatch(startId: number): Promise<void> {
 
   for (const studentId of studentIds) {
     const result = await fetchStudentResult(studentId);
-    await saveStudentRecord(result);
+    await saveStudentRecord(result.responseText[0]);
   }
 
   console.log(`Batch complete: ${studentIds.length} responses processed.`);
@@ -140,7 +140,7 @@ async function processBatch(startId: number): Promise<void> {
 
 async function main(): Promise<void> {
   const lastProcessedStudentId = await getLastProcessedStudentId();
-  let startId = lastProcessedStudentId + 1;
+  let startId = lastProcessedStudentId + 1000000;
 
   if (lastProcessedStudentId > 0) {
     console.log(`Resuming from StudentId=${startId}`);
