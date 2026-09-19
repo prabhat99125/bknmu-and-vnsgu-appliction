@@ -4,7 +4,7 @@
   "description": "university app student data",
   "main": "app.ts",
   "scripts": {
-    "start": "node --experimental-strip-types app.ts",
+    "start": "node app.ts",
     "typecheck": "npx tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
