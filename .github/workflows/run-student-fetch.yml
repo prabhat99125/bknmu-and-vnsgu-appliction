@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -34,7 +34,7 @@ jobs:
 
       - name: Upload app output as artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: student-fetch-output
           path: |
@@ -46,6 +46,7 @@ jobs:
         if: always()
         run: |
           echo "Workflow finished."
+
           if [ -f app-output.log ]; then
             echo "--- Last 80 lines of app-output.log ---"
             tail -n 80 app-output.log
